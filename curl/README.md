@@ -1,0 +1,3 @@
+## Running
+
+`./index.sh YOURAPIKEY`

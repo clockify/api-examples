@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <script>
+	  function getCurrentUser() {
+	    const key = document.querySelector('#apiKey').value;
+		if (!key) {
+		  alert('API key is required')
+		  return
+		}
+	    fetch('https://api.clockify.me/api/v1/user', {
+		  headers: {
+		    'X-Api-Key': key
+		  }
+		}).then(r => r.json()).then(user => {
+		  let message = 'Provided API key is not valid'
+		  user.name && (message = `Welcome ${user.name}`)
+		  
+		  document.querySelector('#result').innerText = message
+		})
+	  }
+	</script>
+  </head>
+  <body>
+    Your <a href="https://clockify.me/user/settings" target="_blank">API key</a>: <input id="apiKey"> 
+    <button onClick="getCurrentUser()">Go</button><br>
+	<span id="result">
+  </body>
+</html>
